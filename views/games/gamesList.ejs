@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games List</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Games List</h1>
+        <a href="/">Home</a> 
+        <a href="/games/index">Back to Games Index</a> 
+    </header>
+    <section>
+        <h2>Your Games</h2>
+        <ul>
+            <% if (games.length === 0) { %>
+                <li>No games found.</li>
+            <% } else { %>
+                <% games.forEach(game => { %>
+                    <li><%= game.title %> - <%= game.platform %></li>
+                <% }) %>
+            <% } %>
+        </ul>
+    </section>
+</body>
+</html>

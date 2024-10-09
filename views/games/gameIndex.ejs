@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games Index</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Games List</h1>
+    </header>
+
+    <section>
+        <h2>Add a New Game</h2>
+        <form action="/games" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required>
+            
+            <label for="platform">Platform:</label>
+            <input type="text" id="platform" name="platform" required>
+            
+            <button type="submit">Add Game</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>All Games</h2>
+        <ul>
+            <% if (games.length === 0) { %>
+                <li>No games available.</li>
+            <% } else { %>
+                <% games.forEach(game => { %>
+                    <li>
+                        <h3><%= game.title %></h3>
+                        <p>Genre: <%= game.genre %></p>
+                        <p>Platform: <%= game.platform %></p>
+                        <a href="/games/<%= game._id %>">View Details</a>
+                    </li>
+                <% }) %>
+            <% } %>
+        </ul>
+    </section>
+    <section>
+        <h2>All Games</h2>
+        <ul>
+            <% if (games.length === 0) { %>
+                <li>No games available.</li>
+            <% } else { %>
+                <% games.forEach(game => { %>
+                    <li>
+                        <h3><%= game.title %></h3>
+                        <p>Genre: <%= game.genre %></p>
+                        <p>Platform: <%= game.platform %></p>
+                        <a href="/games/<%= game._id %>">View Details</a>
+                        <a href="/games/edit/<%= game._id %>">Edit</a>
+                        <form action="/games/delete/<%= game._id %>" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% }) %>
+            <% } %>
+        </ul>
+    </section>
+    
+
+    <button onclick="window.location.href='/games/new'">Go to Add New Game</button>
+</body>
+</html>
